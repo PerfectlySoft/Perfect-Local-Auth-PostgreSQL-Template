@@ -1,0 +1,19 @@
+{{>header}}
+<div class="row" style="margin-top: 100px;">
+	<div class="col thirteen last push_three">
+		<p>Hello, world!</p>
+
+		{{#authenticated}}
+		<p><a href="/logout" class="button">Log out</a></p>
+		{{/authenticated}}
+
+		{{^authenticated}}
+		<p>
+			<a href="/login" class="button">Log in</a>
+			<a href="/register" class="button">Register</a>
+		</p>
+		{{/authenticated}}
+	</div>
+
+</div>
+{{>footer}}
