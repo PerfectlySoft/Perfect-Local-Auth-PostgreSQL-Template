@@ -29,19 +29,21 @@ import LocalAuthentication
 let _ = PerfectCrypto.isInitialized
 
 #if os(Linux)
-let fileRoot = "/perfect-deployed/apidocumentationserver/"
+let fileRoot = "/perfect-deployed/apidocumentationserver/" // <-- change
 var httpPort = 8100
+let fname = "./config/ApplicationConfigurationLinux.json"
 #else
 let fileRoot = ""
 var httpPort = 8181
+let fname = "./config/ApplicationConfiguration.json"
 #endif
 
 var baseURL = ""
 
 // Configuration of Session
-SessionConfig.name = "ESI"
+SessionConfig.name = "perfectSession" // <-- change
 SessionConfig.idle = 86400
-SessionConfig.cookieDomain = "localhost" //change if needed
+SessionConfig.cookieDomain = "localhost" //<-- change
 SessionConfig.IPAddressLock = false
 SessionConfig.userAgentLock = false
 SessionConfig.CSRF.checkState = true
@@ -50,14 +52,14 @@ SessionConfig.cookieSameSite = .lax
 
 RequestLogFile.location = "./log.log"
 
-let opts = initializeSchema()
+let opts = initializeSchema(fname) // <-- loads base config like db and email configuration
 httpPort = opts["httpPort"] as? Int ?? httpPort
 baseURL = opts["baseURL"] as? String ?? baseURL
 
 let sessionDriver = SessionPostgresDriver()
 
 
-config()
+config() // for custom options
 Utility.initializeObjects()
 
 // Configure Server
