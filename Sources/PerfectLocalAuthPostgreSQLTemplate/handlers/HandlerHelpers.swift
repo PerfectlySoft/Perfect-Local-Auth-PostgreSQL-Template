@@ -11,6 +11,30 @@ import StORM
 
 extension Handlers {
 
+	static func extras(_ request: HTTPRequest) -> [String : Any] {
+
+		return [
+			"token": request.session?.token ?? "",
+			"csrfToken": request.session?.data["csrf"] as? String ?? ""
+		]
+
+	}
+
+	static func appExtras(_ request: HTTPRequest) -> [String : Any] {
+
+		return [
+			"configTitle": configTitle,
+			"configLogo": configLogo,
+			"configLogoSrcSet": configLogoSrcSet
+		]
+
+	}
+
+	static func errorJSON(_ request: HTTPRequest, _ response: HTTPResponse, msg: String) {
+		_ = try? response.setBody(json: ["error": msg])
+		response.completed()
+	}
+
 
 	static func error(_ request: HTTPRequest, _ response: HTTPResponse, error: String, code: HTTPResponseStatus = .badRequest) {
 		do {

@@ -60,7 +60,16 @@ let sessionDriver = SessionPostgresDriver()
 
 
 config() // for custom options
-Utility.initializeObjects()
+Utility.initializeObjects() // local setups
+
+// Run local setup routines
+Config.runSetup()
+
+// Defaults
+var configTitle = Config.getVal("title","Perfect Local Auth PostgreSQL Template")
+var configLogo = Config.getVal("logo","/images/perfect-logo-2-0.png")
+var configLogoSrcSet = Config.getVal("logosrcset","/images/perfect-logo-2-0.png 1x, /images/perfect-logo-2-0.svg 2x")
+
 
 // Configure Server
 var confData: [String:[[String:Any]]] = [

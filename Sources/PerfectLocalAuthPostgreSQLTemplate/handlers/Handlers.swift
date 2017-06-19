@@ -29,20 +29,28 @@ class Handlers {
 			request, response in
 			var context: [String : Any] = ["title": "Perfect Authentication Server"]
 			if let i = request.session?.userid, !i.isEmpty { context["authenticated"] = true }
-			context["csrfToken"] = request.session?.data["csrf"] as? String ?? ""
+
+			// add app config vars
+			for i in Handlers.extras(request) { context[i.0] = i.1 }
+			for i in Handlers.appExtras(request) { context[i.0] = i.1 }
+
 			response.render(template: "views/index", context: context)
 		}
 	}
 
-	public static func login(data: [String:Any]) throws -> RequestHandler {
-		return {
-			request, response in
-			var context: [String : Any] = ["title": "Perfect Authentication Server"]
-			if let i = request.session?.userid, !i.isEmpty { context["authenticated"] = true }
-			context["csrfToken"] = request.session?.data["csrf"] as? String ?? ""
-			response.render(template: "views/login", context: context)
-		}
-	}
+//	public static func login(data: [String:Any]) throws -> RequestHandler {
+//		return {
+//			request, response in
+//			var context: [String : Any] = ["title": "Perfect Authentication Server"]
+//			if let i = request.session?.userid, !i.isEmpty { context["authenticated"] = true }
+//
+//			// add app config vars
+//			for i in Handlers.extras(request) { context[i.0] = i.1 }
+//			for i in Handlers.appExtras(request) { context[i.0] = i.1 }
+//
+//			response.render(template: "views/login", context: context)
+//		}
+//	}
 
 
 
