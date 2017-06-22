@@ -1,4 +1,4 @@
-# Perfect Local Authentication App Template (PostgreSQL)
+# Perfect Local Authentication App Template (PostgreSQL) [简体中文](README.zh_CN.md)
 
 <p align="center">
     <a href="http://perfect.org/get-involved.html" target="_blank">
@@ -23,7 +23,7 @@
 
 <p align="center">
     <a href="https://developer.apple.com/swift/" target="_blank">
-        <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
+        <img src="https://img.shields.io/badge/Swift-3.1-orange.svg?style=flat" alt="Swift 3.1">
     </a>
     <a href="https://developer.apple.com/swift/" target="_blank">
         <img src="https://img.shields.io/badge/Platforms-OS%20X%20%7C%20Linux%20-lightgray.svg?style=flat" alt="Platforms OS X | Linux">
@@ -98,7 +98,7 @@ The files in this directory are handler functions for JSON and Web routes.
 
 #### / objects
 
-This directory is intended as the location for where you place your object classes and structs. Tere is also an `initializeObjects.swift` file for invoking setup functions in one convenient place.
+This directory is intended as the location for where you place your object classes and structs. There is also an `initializeObjects.swift` file for invoking setup functions in one convenient place.
 
 #### / utility
 
