@@ -72,3 +72,4 @@ Package.swift.orig
 *.log
 Package.pins
 ApplicationConfiguration.json
+StORMlog.txt
