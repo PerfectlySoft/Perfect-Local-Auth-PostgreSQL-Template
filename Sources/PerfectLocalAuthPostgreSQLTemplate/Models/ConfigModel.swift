@@ -7,7 +7,6 @@
 
 import StORM
 import PostgresStORM
-import SwiftRandom
 
 public class Config: PostgresStORM {
 	public var name						= ""
