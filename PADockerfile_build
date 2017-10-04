@@ -1,9 +1,0 @@
-FROM perfectlysoft/perfectassistant:latest
-# COpenSSL-2.0.3/PADockerfile
-RUN apt-get -y update && apt-get install -y libssl-dev
-
-# cURL-2.0.2/PADockerfile
-RUN apt-get -y update && apt-get install -y libcurl4-openssl-dev
-# LinuxBridge-2.0.2/PADockerfile
-RUN apt-get -y update && apt-get install -y uuid-dev
-RUN rm -rf /var/lib/apt/lists/*

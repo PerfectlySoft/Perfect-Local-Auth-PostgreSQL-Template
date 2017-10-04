@@ -73,3 +73,5 @@ Package.swift.orig
 Package.pins
 ApplicationConfiguration.json
 StORMlog.txt
+Package.resolved
+PADockerfile_build
