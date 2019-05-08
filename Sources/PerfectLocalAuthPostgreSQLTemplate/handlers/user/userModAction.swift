@@ -21,7 +21,9 @@ extension Handlers {
 
 			let contextAccountID = request.session?.userid ?? ""
 			let contextAuthenticated = !(request.session?.userid ?? "").isEmpty
-			if !contextAuthenticated { response.redirect(path: "/login") }
+			if !contextAuthenticated {
+				return response.redirect(path: "/login")
+			}
 
 			let user = Account()
 			var msg = ""
@@ -30,10 +32,9 @@ extension Handlers {
 				try? user.get(id)
 
 				if user.id.isEmpty {
-					redirectRequest(request, response, msg: "Invalid User", template: "views/user")
+					return redirectRequest(request, response, msg: "Invalid User", template: "views/user")
 				}
 			}
-
 
 			if let firstname = request.param(name: "firstname"), !firstname.isEmpty,
 				let lastname = request.param(name: "lastname"), !lastname.isEmpty,
@@ -69,12 +70,10 @@ extension Handlers {
 
 			} else {
 				msg = "Please enter the user's first and last name, as well as a valid email."
-				redirectRequest(request, response, msg: msg, template: "views/users", additional: [
+				return redirectRequest(request, response, msg: msg, template: "views/users", additional: [
 					"usermod?":"true",
 					])
 			}
-
-
 			let users = Account.listUsers()
 
 			var context: [String : Any] = [

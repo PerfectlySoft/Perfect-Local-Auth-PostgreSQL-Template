@@ -19,7 +19,9 @@ extension Handlers {
 		return {
 			request, response in
 
-			if (request.session?.userid ?? "").isEmpty { response.completed(status: .notAcceptable) }
+			if (request.session?.userid ?? "").isEmpty {
+				return response.completed(status: .notAcceptable)
+			}
 
 			let user = Account()
 

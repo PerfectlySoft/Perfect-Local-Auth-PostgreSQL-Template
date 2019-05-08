@@ -20,7 +20,9 @@ extension Handlers {
 			request, response in
 			let contextAccountID = request.session?.userid ?? ""
 			let contextAuthenticated = !(request.session?.userid ?? "").isEmpty
-			if !contextAuthenticated { response.redirect(path: "/login") }
+			if !contextAuthenticated {
+				return response.redirect(path: "/login")
+			}
 
 			let users = Account.listUsers()
 

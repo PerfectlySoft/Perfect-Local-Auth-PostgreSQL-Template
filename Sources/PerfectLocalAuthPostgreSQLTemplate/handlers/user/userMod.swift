@@ -21,7 +21,9 @@ extension Handlers {
 
 			let contextAccountID = request.session?.userid ?? ""
 			let contextAuthenticated = !(request.session?.userid ?? "").isEmpty
-			if !contextAuthenticated { response.redirect(path: "/login") }
+			if !contextAuthenticated {
+				return response.redirect(path: "/login")
+			}
 
 			let user = Account()
 			var action = "Create"
@@ -30,12 +32,11 @@ extension Handlers {
 				try? user.get(id)
 
 				if user.id.isEmpty {
-					redirectRequest(request, response, msg: "Invalid User", template: "views/user")
+					return redirectRequest(request, response, msg: "Invalid User", template: "views/user")
 				}
 
 				action = "Edit"
 			}
-
 
 			var context: [String : Any] = [
 				"accountID": contextAccountID,

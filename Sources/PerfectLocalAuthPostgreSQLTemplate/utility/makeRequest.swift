@@ -87,16 +87,16 @@ extension Utility {
 		let _ = perf.1
 
 		// assamble the body from a binary byte array to a string
-		let content = String(bytes:bodyIn, encoding:String.Encoding.utf8)
+		let content = String(bytes:bodyIn, encoding:String.Encoding.utf8) ?? ""
 
 		// parse the body data into a json convertible
 		do {
-			if (content?.characters.count)! > 0 {
-				if (content?.startsWith("["))! {
-					let arr = try content?.jsonDecode() as! [Any]
+			if content.count > 0 {
+				if content.startsWith("[") {
+					let arr = try content.jsonDecode() as! [Any]
 					data["response"] = arr
 				} else {
-					data = try content?.jsonDecode() as! [String : Any]
+					data = try content.jsonDecode() as! [String : Any]
 				}
 			}
 			return data
